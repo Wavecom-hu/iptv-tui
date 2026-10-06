@@ -1,0 +1,27 @@
+{
+    "version": "1.0.3",
+    "description": "WaveCom TV a terminálban: élő TV, műsorújság, visszanézés (IPTV kliens)",
+    "homepage": "https://github.com/Wavecom-hu/iptv-tui",
+    "license": "Proprietary",
+    "suggest": {
+        "mpv": "extras/mpv"
+    },
+    "architecture": {
+        "64bit": {
+            "url": "https://github.com/Wavecom-hu/iptv-tui/releases/download/v1.0.3/iptv-tui_windows_amd64.zip",
+            "hash": "d2ac4c323c8c1fa60d24462f0c9922479219d1e1485b23eadac2166578847fe9"
+        },
+        "arm64": {
+            "url": "https://github.com/Wavecom-hu/iptv-tui/releases/download/v1.0.3/iptv-tui_windows_arm64.zip",
+            "hash": "64a149e0f00da722e2b1b1f7e3ff088ce56e8937ef020c130ba4a6a2d843f9f3"
+        }
+    },
+    "bin": "iptv-tui.exe",
+    "checkver": "github",
+    "autoupdate": {
+        "architecture": {
+            "64bit": { "url": "https://github.com/Wavecom-hu/iptv-tui/releases/download/v$version/iptv-tui_windows_amd64.zip" },
+            "arm64": { "url": "https://github.com/Wavecom-hu/iptv-tui/releases/download/v$version/iptv-tui_windows_arm64.zip" }
+        }
+    }
+}

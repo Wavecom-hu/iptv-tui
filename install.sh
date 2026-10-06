@@ -69,7 +69,28 @@ case ":$PATH:" in
     ;;
 esac
 
-if ! command -v mpv >/dev/null 2>&1; then
+# macOS-en Homebrew nélkül is: a hordozható mpv.app a felhasználó mappájába (rendszergazda nélkül).
+# Kikapcsolás: IPTV_TUI_NO_MPV=1
+MPVDIR="$HOME/.local/share/iptv-tui"
+if [ "$os" = darwin ] && ! command -v mpv >/dev/null 2>&1 && [ ! -x "$MPVDIR/mpv.app/Contents/MacOS/mpv" ]    && [ ! -x /Applications/mpv.app/Contents/MacOS/mpv ] && [ -z "${IPTV_TUI_NO_MPV:-}" ]; then
+  if [ "$arch" = arm64 ]; then murl="https://laboratory.stolendata.net/~djinn/mpv_osx/mpv-arm64-latest.tar.gz"
+  else murl="https://laboratory.stolendata.net/~djinn/mpv_osx/mpv-latest.tar.gz"; fi
+  say ""
+  say "Az mpv lejátszó nincs telepítve; letöltöm ide: $MPVDIR (Homebrew nem kell)"
+  mkdir -p "$tmp/mpv" "$MPVDIR"
+  if curl -fsSL "$murl" -o "$tmp/mpv.tgz" && tar -xzf "$tmp/mpv.tgz" -C "$tmp/mpv"; then
+    app=$(find "$tmp/mpv" -maxdepth 3 -name mpv.app -type d | head -1)
+    if [ -n "$app" ]; then
+      rm -rf "$MPVDIR/mpv.app" && cp -R "$app" "$MPVDIR/mpv.app"
+      ln -sf "$MPVDIR/mpv.app/Contents/MacOS/mpv" "$DIR/mpv"
+      say "mpv kész: $("$MPVDIR/mpv.app/Contents/MacOS/mpv" --version 2>/dev/null | head -1)"
+    fi
+  else
+    say "Az mpv letöltése nem sikerült; később: brew install mpv"
+  fi
+fi
+
+if ! command -v mpv >/dev/null 2>&1 && [ ! -x "$MPVDIR/mpv.app/Contents/MacOS/mpv" ] && [ ! -x /Applications/mpv.app/Contents/MacOS/mpv ]; then
   say ""
   say "A lejátszáshoz az mpv is kell:"
   if [ "$os" = darwin ]; then

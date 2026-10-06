@@ -67,10 +67,7 @@ case ":$PATH:" in
     # egyszer beírjuk a shell beállítófájljába (ha még nincs benne); kikapcsolás: IPTV_TUI_NO_PATH=1
     line="export PATH=\"$DIR:\$PATH\""
     if [ -z "${IPTV_TUI_NO_PATH:-}" ] && ! grep -qsF "$DIR" "$rc"; then
-      printf '
-# iptv-tui
-%s
-' "$line" >> "$rc"
+      printf '\n# iptv-tui\n%s\n' "$line" >> "$rc"
       say "A $DIR a PATH-ba került ($rc). Nyiss új terminálablakot, vagy futtasd:  . $rc"
     else
       say "Figyelem: a $DIR nincs a PATH-ban. Add hozzá:  echo '$line' >> $rc"

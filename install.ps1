@@ -43,7 +43,8 @@ if (-not $hasMpv) {
     Write-Host ""
     Write-Host "A lejátszáshoz az mpv is kell."
     if (Get-Command winget -ErrorAction SilentlyContinue) {
-        $ans = Read-Host "Telepítsem most a wingettel? (i/n)"
+        $ans = 'n'
+        try { $ans = Read-Host "Telepítsem most a wingettel? (i/n)" } catch { }
         if ($ans -match '^(i|y)') {
             winget install -e --id shinchiro.mpv --accept-source-agreements --accept-package-agreements
         } else {

@@ -58,7 +58,15 @@ say "Kész: $DIR/iptv-tui ($("$DIR/iptv-tui" --version 2>/dev/null || echo telep
 
 case ":$PATH:" in
   *":$DIR:"*) ;;
-  *) say "Figyelem: a $DIR nincs a PATH-ban. Add hozzá, pl.:  echo 'export PATH=\"$DIR:\$PATH\"' >> ~/.profile" ;;
+  *)
+    case "${SHELL:-}" in
+      *zsh) rc="$HOME/.zshrc" ;;
+      *bash) rc="$HOME/.bashrc" ;;
+      *) rc="$HOME/.profile" ;;
+    esac
+    say "Figyelem: a $DIR nincs a PATH-ban. Add hozzá:"
+    say "  echo 'export PATH=\"$DIR:\$PATH\"' >> $rc && . $rc"
+    ;;
 esac
 
 if ! command -v mpv >/dev/null 2>&1; then

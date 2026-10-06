@@ -1,0 +1,19 @@
+PackageIdentifier: Wavecom.IptvTui
+PackageVersion: 1.0.4
+InstallerType: zip
+NestedInstallerType: portable
+NestedInstallerFiles:
+- RelativeFilePath: iptv-tui.exe
+  PortableCommandAlias: iptv-tui
+Dependencies:
+  PackageDependencies:
+  - PackageIdentifier: shinchiro.mpv
+Installers:
+- Architecture: x64
+  InstallerUrl: https://github.com/Wavecom-hu/iptv-tui/releases/download/v1.0.4/iptv-tui_windows_amd64.zip
+  InstallerSha256: DF1AC9F78E800011F0AFB50549DCA2FF9402290CCC4B658A8C673FFA7733F28C
+- Architecture: arm64
+  InstallerUrl: https://github.com/Wavecom-hu/iptv-tui/releases/download/v1.0.4/iptv-tui_windows_arm64.zip
+  InstallerSha256: DFBCF12F5302329B5FBBAA430D81998EB17AF8EF9B084935C44079EFDD289039
+ManifestType: installer
+ManifestVersion: 1.6.0

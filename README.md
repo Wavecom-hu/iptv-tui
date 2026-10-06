@@ -70,8 +70,8 @@ megfelelő fájlt, csomagold ki, és indítsd el az `iptv-tui` (Windowson `iptv-
 | Raspberry Pi 2/3/4 (32 bit) | `iptv-tui_linux_armv7.tar.gz` |
 | Raspberry Pi Zero / 1 | `iptv-tui_linux_armv6.tar.gz` |
 
-macOS-en a kézzel letöltött fájlt a Gatekeeper letilthatja. Ilyenkor:
-`xattr -d com.apple.quarantine iptv-tui`. A Homebrew és a telepítő-szkript ezt elintézi.
+A macOS-es program az Apple-nél regisztrált fejlesztői tanúsítvánnyal aláírt és notarizált
+(Developer ID: Wavecom Kft.), így a Gatekeeper kézzel letöltve sem tiltja le.
 
 ## Használat
 
